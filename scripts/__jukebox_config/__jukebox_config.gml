@@ -35,8 +35,8 @@ enum JUKEBOX
     PARENT,           //17
     TYPE,             //18
     PRIORITY,         //19
-    EMITTER,          //20
-    CHILDREN,         //21
+    CHILDREN,         //20
+    __INDEX,          //21
     __FLIPFLOP,       //22
     __SIZE            //23
 }
@@ -44,6 +44,8 @@ enum JUKEBOX
 // Constants returned by jukebox_get("node", JUKEBOX.TYPE)
 #macro JUKEBOX_TYPE_GROUP  0
 #macro JUKEBOX_TYPE_AUDIO  1
+
+#macro JUKEBOX_NOT_PLAYING  -1
 
 //Debug
 #macro JUKEBOX_DEBUG_CLEAN_UP_ORPHANS  false  //Whether to check for unconnected nodes every frame. Recommended to catch bugs

@@ -1,10 +1,10 @@
 jukebox_step();
 
-if (jukebox_will_finish("loop start") && !jukebox_exists("loop stem 1"))
+if (jukebox_will_finish("loop") && !jukebox_exists("loop stem 1"))
 {
-    jukebox_play(sndLoop1, "loop", "loop stem 1", 1.0, true, false);
-    jukebox_play(sndLoop2, "loop", "loop stem 2", 0.0, true, false);
-    jukebox_play(sndLoop3, "loop", "loop stem 3", 0.0, true, false);
+    jukebox_play(sndLoop1, "loop group", "loop stem 1", 1.0, true, false);
+    jukebox_play(sndLoop2, "loop group", "loop stem 2", 0.0, true, false);
+    jukebox_play(sndLoop3, "loop group", "loop stem 3", 0.0, true, false);
 }
 
 if (keyboard_check_pressed(ord("M"))) jukebox_set("loop", JUKEBOX.MUTE, !jukebox_get("loop", JUKEBOX.MUTE));

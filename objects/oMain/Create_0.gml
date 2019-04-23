@@ -7,7 +7,7 @@ jukebox_common_trim(sndEndBad , 0.75);
 jukebox_common_trim(sndEndGood, 0.75);
 
 jukebox_group("bgm", "root", 1.0, 1.0, false);
-jukebox_group("loop", "bgm", 1.0, 1.0, false);
-jukebox_fade("loop", 1/17.5, 1.0);
+jukebox_group("loop group", "bgm", 0.0, 1.0, false);
+jukebox_fade("loop group", 1/17.5, 1.0);
 
-jukebox_play(sndStart, "loop", "loop start");
+jukebox_play(sndStart, "loop group", "loop");

@@ -95,14 +95,6 @@
             }
         },
         {
-            "Key": "2367014b-91c6-4f5a-bc21-d8f06ed4ab9e",
-            "Value": {
-                "id": "da6dead0-bc03-4076-921c-a3bf0dde622c",
-                "resourcePath": "scripts\\jukebox_play_on\\jukebox_play_on.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "25a5f155-de69-453f-b495-6e230e28fc1c",
             "Value": {
                 "id": "a396c8ae-6227-4c12-9597-64b061d36e24",
@@ -452,7 +444,6 @@
         "071703b5-73fd-48eb-85a5-5f53797bf9e3",
         "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
         "25a5f155-de69-453f-b495-6e230e28fc1c",
-        "2367014b-91c6-4f5a-bc21-d8f06ed4ab9e",
         "bbd644dc-beff-4352-8d16-07b70af6ed01",
         "7df9c31d-1ba9-4dd7-8c79-9c826851a5eb",
         "c0751370-035d-4071-b27d-5fbadeb030e2",

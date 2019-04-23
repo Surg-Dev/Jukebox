@@ -120,7 +120,6 @@ _node[@ JUKEBOX.NAME             ] = _name;
 _node[@ JUKEBOX.PARENT           ] = _parent;
 _node[@ JUKEBOX.TYPE             ] = JUKEBOX_TYPE_AUDIO;
 _node[@ JUKEBOX.PRIORITY         ] = _priority;
-_node[@ JUKEBOX.EMITTER          ] = undefined;
 _node[@ JUKEBOX.CHILDREN         ] = [];
 global.__jukebox_names[? _name ] = _node;
 

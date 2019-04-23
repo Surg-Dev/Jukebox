@@ -91,7 +91,7 @@ _node[@ JUKEBOX.GAIN_INHERITED   ] = _resultant_gain;
 
 _node[@ JUKEBOX.AUDIO            ] = -1;
 _node[@ JUKEBOX.INSTANCE         ] = -1;
-_node[@ JUKEBOX.TIME_REMAINING   ] = 0;
+_node[@ JUKEBOX.TIME_REMAINING   ] =  0;
 _node[@ JUKEBOX.QUEUED_AUDIO     ] = -1;
 _node[@ JUKEBOX.QUEUED_LOOP      ] = false;
 
@@ -107,7 +107,6 @@ _node[@ JUKEBOX.NAME             ] = _name;
 _node[@ JUKEBOX.PARENT           ] = _parent;
 _node[@ JUKEBOX.TYPE             ] = JUKEBOX_TYPE_GROUP;
 _node[@ JUKEBOX.PRIORITY         ] = _priority;
-_node[@ JUKEBOX.EMITTER          ] = undefined;
 _node[@ JUKEBOX.CHILDREN         ] = [];
 global.__jukebox_names[? _name ] = _node;
 

@@ -3,16 +3,13 @@
 var _step_size = ((argument_count > 0) && (argument[0] != undefined))? argument[0] : __JUKEBOX_DEFAULT_STEP_SIZE;
 
 global.__jukebox_flipflop = !global.__jukebox_flipflop;
-ds_list_clear(global.__jukebox_stack);
 
 
 
-var _name = global.__jukebox_root_name;
-var _node = global.__jukebox_names[? _name ];
-
-var _gain        = _node[ JUKEBOX.GAIN             ];
-var _fade_speed  = _node[ JUKEBOX.FADE_SPEED       ];
-var _fade_target = _node[ JUKEBOX.FADE_TARGET_GAIN ];
+var _root_node = global.__jukebox_names[? global.__jukebox_root_name ];
+var _gain        = _root_node[ JUKEBOX.GAIN             ];
+var _fade_speed  = _root_node[ JUKEBOX.FADE_SPEED       ];
+var _fade_target = _root_node[ JUKEBOX.FADE_TARGET_GAIN ];
 
 if (_fade_speed > 0)
 {
@@ -23,49 +20,50 @@ else if (_fade_speed < 0)
     _gain = max(_fade_target, _gain + _fade_speed*_step_size);
 }
 
-_node[@ JUKEBOX.MUTE_INHERITED ] = _node[ JUKEBOX.MUTE ];
-_node[@ JUKEBOX.__FLIPFLOP     ] = global.__jukebox_flipflop;
-_node[@ JUKEBOX.GAIN           ] = _gain;
-_node[@ JUKEBOX.GAIN_INHERITED ] = _node[ JUKEBOX.TRIM ]*_gain;
-ds_list_add(global.__jukebox_stack, 0);
+_root_node[@ JUKEBOX.MUTE_INHERITED ] = _root_node[ JUKEBOX.MUTE ];
+_root_node[@ JUKEBOX.__INDEX        ] = 0;
+_root_node[@ JUKEBOX.__FLIPFLOP     ] = global.__jukebox_flipflop;
+_root_node[@ JUKEBOX.GAIN           ] = _gain;
+_root_node[@ JUKEBOX.GAIN_INHERITED ] = _root_node[ JUKEBOX.TRIM ]*_gain;
 
 
 
+var _name = global.__jukebox_root_name;
 repeat(999)
 {
-    if (ds_list_empty(global.__jukebox_stack)) break;
+    if (_name == undefined) break;
     
-    var _node = global.__jukebox_names[? _name ];
-    if (_node == undefined)
+    var _parent_node = global.__jukebox_names[? _name ];
+    if (_parent_node == undefined)
     {
         show_debug_message("Jukebox: ERROR! Node \"" + _name + "\" was queued but does not exist");
         _name = _parent_name;
-        ds_list_delete(global.__jukebox_stack, 0);
         break;
     }
+    
     var _parent_name = _name;
+    var _parent_gain = _parent_node[ JUKEBOX.GAIN_INHERITED ];
+    var _parent_mute = _parent_node[ JUKEBOX.MUTE_INHERITED ];
+    var _children    = _parent_node[ JUKEBOX.CHILDREN       ];
     
-    var _parent_gain = _node[ JUKEBOX.GAIN_INHERITED ];
-    var _parent_mute = _node[ JUKEBOX.MUTE_INHERITED ];
-    var _children    = _node[ JUKEBOX.CHILDREN       ];
-    
-    var _index = global.__jukebox_stack[| 0];
+    var _index = _parent_node[@ JUKEBOX.__INDEX ];
+    _parent_node[@ JUKEBOX.__INDEX ]++;
     if (_index >= array_length_1d(_children))
     {
-        _name = _node[ JUKEBOX.PARENT ];
-        ds_list_delete(global.__jukebox_stack, 0);
+        _name = _parent_node[ JUKEBOX.PARENT ];
         continue;
     }
     
     _name = _children[ _index ];
-    global.__jukebox_stack[| 0]++;
     if (_name == undefined)
     {
         _name = _parent_name;
         continue;
     }
     
-    _node = global.__jukebox_names[? _name ];
+    
+    
+    var _node = global.__jukebox_names[? _name ];
     if (_node == undefined)
     {
         _children[@ _index ] = undefined;
@@ -74,6 +72,7 @@ repeat(999)
     }
     
     _node[@ JUKEBOX.__FLIPFLOP ] = global.__jukebox_flipflop;
+    _node[@ JUKEBOX.__INDEX    ] = 0;
     
     var _mute = _parent_mute || _node[ JUKEBOX.MUTE ];
     _node[@ JUKEBOX.MUTE_INHERITED ] = _mute;
@@ -165,16 +164,7 @@ repeat(999)
                     show_debug_message("Jukebox: Starting new instance of \"" + string(audio_get_name(_next_audio)) + "\" for node \"" + string(_name) + "\"");
                     
                     audio_stop_sound(_instance); //Positive destroy the old instance
-                    
-                    var _emitter = _node[ JUKEBOX.EMITTER ];
-                    if (_emitter == undefined)
-                    {
-                        _instance = audio_play_sound(_next_audio, _node[ JUKEBOX.PRIORITY ], _next_loop);
-                    }
-                    else
-                    {
-                        _instance = audio_play_sound_on(_emitter, _next_audio, _next_loop, _node[ JUKEBOX.PRIORITY ]);
-                    }
+                    _instance = audio_play_sound(_next_audio, _node[ JUKEBOX.PRIORITY ], _next_loop);
                     audio_sound_gain(_instance, clamp(_mute_gain*_resultant_gain, 0, JUKEBOX_MAX_GAIN), 0);
                     
                     _node[@ JUKEBOX.AUDIO    ] = _next_audio;
@@ -194,8 +184,6 @@ repeat(999)
             }
         }
     }
-    
-    ds_list_insert(global.__jukebox_stack, 0, 0);
 }
 
 
