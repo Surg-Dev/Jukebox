@@ -1,5 +1,5 @@
 /// @param name
-/// @param trim
+/// @param trimGain
 
 var _name = argument0;
 var _trim = argument1;

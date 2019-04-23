@@ -98,7 +98,7 @@
             "Key": "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
             "Value": {
                 "id": "016f0069-db65-46c9-b682-cc4e5be90c58",
-                "resourcePath": "scripts\\jukebox_set_trim_global\\jukebox_set_trim_global.yy",
+                "resourcePath": "scripts\\jukebox_set_asset_trim\\jukebox_set_asset_trim.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -510,8 +510,8 @@
         "a2466029-777d-4729-819f-1aff1b933d57",
         "52fb46d1-043d-4471-b565-f6c910be3fc0",
         "e38e8810-8c68-4924-8489-47762cd55179",
-        "d1633306-80dc-47e1-ab00-30618e5062e8",
         "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
+        "d1633306-80dc-47e1-ab00-30618e5062e8",
         "1830cd61-c1b7-43da-8b31-c309af2e4180",
         "f25d59e6-de85-46f7-9b89-95eeb17f4ce9",
         "d3309ad4-fafc-4623-8b72-fc7e9f22db63"
