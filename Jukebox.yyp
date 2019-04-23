@@ -39,14 +39,6 @@
             }
         },
         {
-            "Key": "039ca7ff-5057-4b6c-9aa8-0a981e16af26",
-            "Value": {
-                "id": "89c53931-7f72-48d2-a5e9-f571cd69a650",
-                "resourcePath": "scripts\\jukebox_generate_name\\jukebox_generate_name.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "071703b5-73fd-48eb-85a5-5f53797bf9e3",
             "Value": {
                 "id": "ce92ac78-d5b3-491e-9775-7bedf12ac1a2",
@@ -87,10 +79,10 @@
             }
         },
         {
-            "Key": "1645ab6e-f5bf-469b-b1a2-d389e4ac1dd0",
+            "Key": "17d7eb2a-d732-49d4-93b0-893c57334caa",
             "Value": {
-                "id": "e526f522-0527-4940-a62a-e0de84b20168",
-                "resourcePath": "views\\1645ab6e-f5bf-469b-b1a2-d389e4ac1dd0.yy",
+                "id": "94373b26-d9fb-41dc-92a3-c75ecc42aa50",
+                "resourcePath": "views\\17d7eb2a-d732-49d4-93b0-893c57334caa.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -106,7 +98,7 @@
             "Key": "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
             "Value": {
                 "id": "016f0069-db65-46c9-b682-cc4e5be90c58",
-                "resourcePath": "scripts\\jukebox_set_global_trim\\jukebox_set_global_trim.yy",
+                "resourcePath": "scripts\\jukebox_set_trim_global\\jukebox_set_trim_global.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -202,7 +194,7 @@
             "Key": "617acf85-9de9-4f81-a876-c2e612981b99",
             "Value": {
                 "id": "ec1c78b6-4f9c-4de8-977a-85d119279967",
-                "resourcePath": "scripts\\jukebox_destroy\\jukebox_destroy.yy",
+                "resourcePath": "scripts\\jukebox_stop\\jukebox_stop.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -343,6 +335,14 @@
             }
         },
         {
+            "Key": "aec08444-2bcf-491d-b91f-42b078e5cb54",
+            "Value": {
+                "id": "7e2155dd-bd7a-4352-97e3-0f8c1e6f58f8",
+                "resourcePath": "views\\aec08444-2bcf-491d-b91f-42b078e5cb54.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "b3d7db68-b334-4ab0-b273-1615af228697",
             "Value": {
                 "id": "cc133890-49e8-407c-9fa8-f84bd7872f63",
@@ -394,7 +394,7 @@
             "Key": "c6cfc943-ed0c-4f0a-8fbd-d3524354cb5c",
             "Value": {
                 "id": "9761f3f3-c4b6-41e0-9767-c37256d17c2f",
-                "resourcePath": "scripts\\jukebox_destroy_children\\jukebox_destroy_children.yy",
+                "resourcePath": "scripts\\jukebox_stop_children\\jukebox_stop_children.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -426,7 +426,7 @@
             "Key": "d3309ad4-fafc-4623-8b72-fc7e9f22db63",
             "Value": {
                 "id": "8f966f14-416a-409a-8ffe-a9984c6c7726",
-                "resourcePath": "scripts\\jukebox_will_finish\\jukebox_will_finish.yy",
+                "resourcePath": "scripts\\jukebox_audio_will_finish\\jukebox_audio_will_finish.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -452,6 +452,14 @@
                 "id": "6fbbbd46-68d0-4638-97ac-1890d853e26c",
                 "resourcePath": "options\\android\\options_android.yy",
                 "resourceType": "GMAndroidOptions"
+            }
+        },
+        {
+            "Key": "f25d59e6-de85-46f7-9b89-95eeb17f4ce9",
+            "Value": {
+                "id": "fce38773-02c3-480b-b405-e21fcc90fdf4",
+                "resourcePath": "scripts\\jukebox_set\\jukebox_set.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -483,22 +491,22 @@
         "c6f18934-892a-456a-b120-a1ec34efb780",
         "071703b5-73fd-48eb-85a5-5f53797bf9e3",
         "ac32dd56-589e-417c-9ac9-d318ea326126",
+        "08c4f8fd-82a0-43db-ac79-b2b2edbe552c",
         "25a5f155-de69-453f-b495-6e230e28fc1c",
         "bbd644dc-beff-4352-8d16-07b70af6ed01",
-        "a2466029-777d-4729-819f-1aff1b933d57",
         "617acf85-9de9-4f81-a876-c2e612981b99",
         "c6cfc943-ed0c-4f0a-8fbd-d3524354cb5c",
-        "52fb46d1-043d-4471-b565-f6c910be3fc0",
-        "e38e8810-8c68-4924-8489-47762cd55179",
-        "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
-        "d1633306-80dc-47e1-ab00-30618e5062e8",
-        "08c4f8fd-82a0-43db-ac79-b2b2edbe552c",
+        "4bba4404-661d-413f-8005-2f91c1af0eba",
         "7df9c31d-1ba9-4dd7-8c79-9c826851a5eb",
         "c0751370-035d-4071-b27d-5fbadeb030e2",
-        "4bba4404-661d-413f-8005-2f91c1af0eba",
-        "d3309ad4-fafc-4623-8b72-fc7e9f22db63",
-        "039ca7ff-5057-4b6c-9aa8-0a981e16af26",
-        "1830cd61-c1b7-43da-8b31-c309af2e4180"
+        "a2466029-777d-4729-819f-1aff1b933d57",
+        "52fb46d1-043d-4471-b565-f6c910be3fc0",
+        "e38e8810-8c68-4924-8489-47762cd55179",
+        "d1633306-80dc-47e1-ab00-30618e5062e8",
+        "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
+        "1830cd61-c1b7-43da-8b31-c309af2e4180",
+        "f25d59e6-de85-46f7-9b89-95eeb17f4ce9",
+        "d3309ad4-fafc-4623-8b72-fc7e9f22db63"
     ],
     "tutorial": ""
 }

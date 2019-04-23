@@ -1,8 +1,8 @@
 {
-    "id": "617acf85-9de9-4f81-a876-c2e612981b99",
+    "id": "c6cfc943-ed0c-4f0a-8fbd-d3524354cb5c",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "jukebox_destroy",
+    "name": "jukebox_stop_children",
     "IsCompatibility": false,
     "IsDnD": false
 }

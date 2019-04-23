@@ -1,6 +1,6 @@
 /// @param name
-/// @param newIndex
-/// @param newLoop
+/// @param sound
+/// @param loop
 
 var _name  = argument0;
 var _index = argument1;

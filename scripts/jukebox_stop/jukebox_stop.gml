@@ -11,7 +11,7 @@ if (_node == undefined) return false;
 var _instance = _node[ JUKEBOX.INSTANCE ];
 if (_instance != undefined) audio_stop_sound(_instance);
 
-jukebox_destroy_children(_name);
+jukebox_stop_children(_name);
 
 //Remove this child from the parent
 var _parent_node = global.__jukebox_names[? _node[ JUKEBOX.PARENT ] ];

@@ -118,20 +118,23 @@ repeat(999)
     }
     
     //If we're at our fade target, set the fade speed to 0
-    if (_gain == _fade_target) _node[@ JUKEBOX.FADE_SPEED ] = 0;
+    if (_gain == _fade_target)
+    {
+        _node[@ JUKEBOX.FADE_SPEED ] = 0;
+        
+        if ((_fade_target <= 0) && _node[ JUKEBOX.DESTROY_AT_ZERO ])
+        {
+            if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a final gain of zero");
+            jukebox_stop(_name);
+            _name = _parent_name;
+            continue;
+        }
+    }
     
     //Calculate the final gain
     var _resultant_gain = _trim*_gain*_parent_gain;
     _node[@ JUKEBOX.GAIN           ] = _gain;
     _node[@ JUKEBOX.GAIN_INHERITED ] = _resultant_gain;
-    
-    if ((_resultant_gain <= 0) && _node[ JUKEBOX.DESTROY_AT_ZERO ])
-    {
-        if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a final gain of zero");
-        jukebox_destroy(_name);
-        _name = _parent_name;
-        continue;
-    }
     
     
     
@@ -188,7 +191,7 @@ repeat(999)
             if (!_is_playing)
             {
                 if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has ended");
-                jukebox_destroy(_name);
+                jukebox_stop(_name);
                 _name = _parent_name;
             }
         }
@@ -212,7 +215,7 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
             if (_key != global.__jukebox_root_name)
             {
                 if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as it has an undefined parent");
-                jukebox_destroy(_key);
+                jukebox_stop(_key);
             }
             
             _key = ds_map_find_next(global.__jukebox_names, _key);
@@ -223,7 +226,7 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
         if (_parent_node == undefined)
         {
             if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as its parent \"" + string(_parent) + "\" does not exist");
-            jukebox_destroy(_key);
+            jukebox_stop(_key);
             
             _key = ds_map_find_next(global.__jukebox_names, _key);
             continue;
@@ -235,7 +238,7 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
         if (_i >= _size)
         {
             if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as its parent \"" + string(_parent) + "\" does have it as a child");
-            jukebox_destroy(_key);
+            jukebox_stop(_key);
         }
         
         _key = ds_map_find_next(global.__jukebox_names, _key);

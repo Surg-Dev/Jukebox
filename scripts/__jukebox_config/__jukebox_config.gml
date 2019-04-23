@@ -1,4 +1,4 @@
-#macro JUKEBOX_MUTE_SPEED  20.0  //How quickly audio fades out when muted (gain/second)
+#macro JUKEBOX_MUTE_SPEED  12.0  //How quickly audio fades out when muted (gain/second)
 #macro JUKEBOX_TRIM_SPEED   5.0  //How quickly audio fades out when the trim is changed (gain/second)
 
 #macro JUKEBOX_PLAY_OVERWRITE_BEHAVIOUR    1  //Controls what to do when a node name already exists

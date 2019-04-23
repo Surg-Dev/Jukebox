@@ -1,24 +1,24 @@
-/// @param [name]
+/// @param name
 /// @param [parent]
 /// @param [startGain]
-/// @param [trim]
 /// @param [destroyAtZero]
+/// @param [trim]
 /// @param [priority]
 
-var _name            = ((argument_count > 0)                              )? argument[0] : undefined;
+var _name            = argument[0];
 var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_root_name;
 var _gain            = ((argument_count > 2) && (argument[2] != undefined))? argument[2] : 1.0;
-var _trim            = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : 1.0;
-var _destroy_at_zero = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : true;
+var _destroy_at_zero = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : true;
+var _trim            = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : 1.0;
 var _priority        = ((argument_count > 5)                              )? argument[5] : undefined;
 
 if (ds_map_exists(global.__jukebox_names, _name))
 {
-    switch(JUKEBOX_CREATE_OVERWRITE_BEHAVIOUR)
+    switch(JUKEBOX_PLAY_OVERWRITE_BEHAVIOUR)
     {
         case 0:
             show_debug_message("Jukebox: WARNING! Node name \"" + _name + "\" already exists. Destroying old node");
-            jukebox_destroy(_name);
+            jukebox_stop(_name);
         break;
         
         case 1:
@@ -43,20 +43,9 @@ if (ds_map_exists(global.__jukebox_names, _name))
         
         case 3:
             show_error("Jukebox:\nNode name \"" + _name + "\" already exists. Destroying old node.\n ", false);
-            jukebox_destroy(_name);
+            jukebox_stop(_name);
         break;
     }
-}
-
-if (_name == undefined)
-{
-    var _i = 0;
-    do
-    {
-        _name = "group " + string(_i);
-        _i++;
-    }
-    until !ds_map_exists(global.__jukebox_names, _name);
 }
 
 

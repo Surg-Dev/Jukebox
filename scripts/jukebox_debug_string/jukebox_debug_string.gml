@@ -9,7 +9,7 @@ repeat(ds_list_size(global.__jukebox_stack)) _string += "    ";
 _string += "\"" + _name + "\": "
         +  (_node[ JUKEBOX.MUTE_INHERITED ]? "[M] " : "")
         +  "trim=" + string_format(_node[ JUKEBOX.TRIM ], 1, 2)
-        +  ", gain="+ string_format(_node[ JUKEBOX.GAIN ], 1, 2)
+        +  ", fade="+ string_format(_node[ JUKEBOX.GAIN ], 1, 2)
         +  ", final=" + string_format(_node[ JUKEBOX.GAIN_INHERITED ], 1, 2)
         +  "\n";
 
@@ -58,7 +58,7 @@ repeat(999)
         _string += "\"" + _name + "\": "
                 +  (_node[ JUKEBOX.MUTE_INHERITED ]? "[M] " : "")
                 +  "trim=" + string_format(_node[ JUKEBOX.TRIM ], 1, 2)
-                +  ", gain=" +  string_format(_node[ JUKEBOX.GAIN ], 1, 2)
+                +  ", fade=" +  string_format(_node[ JUKEBOX.GAIN ], 1, 2)
                 +  ", final=" +  string_format(_node[ JUKEBOX.GAIN_INHERITED ], 1, 2)
                 +  ", \"" + string(audio_get_name(_node[ JUKEBOX.AUDIO ]))
                 +  "\"" + (_node[ JUKEBOX.LOOP ]? " [L]" : "")
@@ -72,7 +72,7 @@ repeat(999)
         _string += "\"" + _name + "\": "
                 +  (_node[ JUKEBOX.MUTE_INHERITED ]? "[M] " : "")
                 +  "trim=" + string_format(_node[ JUKEBOX.TRIM ], 1, 2)
-                +  ", gain=" +  string_format(_node[ JUKEBOX.GAIN ], 1, 2)
+                +  ", fade=" +  string_format(_node[ JUKEBOX.GAIN ], 1, 2)
                 +  ", final=" +  string_format(_node[ JUKEBOX.GAIN_INHERITED ], 1, 2)
                 +  "\n";
     }

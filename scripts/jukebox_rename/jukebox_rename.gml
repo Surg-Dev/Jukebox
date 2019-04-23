@@ -33,7 +33,7 @@ if (ds_map_exists(global.__jukebox_names, _new_name))
     {
         case 0:
             show_debug_message("Jukebox: WARNING! New node name \"" + _new_name + "\" already exists. Destroying extant node");
-            jukebox_destroy(_new_name);
+            jukebox_stop(_new_name);
         break;
         
         case 1:
@@ -58,7 +58,7 @@ if (ds_map_exists(global.__jukebox_names, _new_name))
         
         case 3:
             show_error("Jukebox:\nNew node name \"" + _new_name + "\" already exists. Destroying extant node.\n ", false);
-            jukebox_destroy(_new_name);
+            jukebox_stop(_new_name);
         break;
     }
 }

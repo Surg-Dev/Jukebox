@@ -15,7 +15,7 @@ for(var _i = 0; _i < _count; _i++)
     var _child_name = _children[ _i ];
     var _child_node = global.__jukebox_names[? _child_name ];
     if (_child_node == undefined) continue;
-    jukebox_destroy(_child_name);
+    jukebox_stop(_child_name);
 }
 
 return true;

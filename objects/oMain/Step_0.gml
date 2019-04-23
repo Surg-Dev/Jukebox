@@ -1,22 +1,56 @@
 jukebox_step();
 
-if (jukebox_will_finish("loop") && !jukebox_exists("loop stem 1"))
+#region Queue example
+
+if (keyboard_check_pressed(ord("1"))) jukebox_queue("queue", sndLoop1, true);
+if (keyboard_check_pressed(ord("2"))) jukebox_queue("queue", sndLoop2, true);
+if (keyboard_check_pressed(ord("3"))) jukebox_queue("queue", sndLoop3, true);
+if (keyboard_check_pressed(ord("F"))) jukebox_queue("queue", sndEndBad, false);
+if (keyboard_check_pressed(ord("G"))) jukebox_queue("queue", sndEndGood, false);
+
+#endregion
+
+#region Parallel example
+
+if (keyboard_check_pressed(ord("1")))
 {
-    jukebox_play(sndLoop1, "loop group", "loop stem 1", 1.0, true, false);
-    jukebox_play(sndLoop2, "loop group", "loop stem 2", 0.0, true, false);
-    jukebox_play(sndLoop3, "loop group", "loop stem 3", 0.0, true, false);
+    jukebox_fade("parallel 1", 1/3, 1.0);
+    jukebox_fade("parallel 2", 1/3, 0.0);
+    jukebox_fade("parallel 3", 1/3, 0.0);
 }
 
-if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("loop", !jukebox_mute_get("loop"));
-if (keyboard_check_pressed(ord("F"))) jukebox_queue("loop", sndEndBad, false);
-if (keyboard_check_pressed(ord("G"))) jukebox_queue("loop", sndEndGood, false);
+if (keyboard_check_pressed(ord("2")))
+{
+    jukebox_fade("parallel 1", 1/3, 0.0);
+    jukebox_fade("parallel 2", 1/3, 1.0);
+    jukebox_fade("parallel 3", 1/3, 0.0);
+}
 
-if (keyboard_check_pressed(ord("T"))) jukebox_set_trim("loop", 0.25);
-if (keyboard_check_pressed(ord("Y"))) jukebox_set_trim("loop", 0.75);
+if (keyboard_check_pressed(ord("3")))
+{
+    jukebox_fade("parallel 1", 1/3, 0.0);
+    jukebox_fade("parallel 2", 1/3, 0.0);
+    jukebox_fade("parallel 3", 1/3, 1.0);
+}
 
-if (keyboard_check_pressed(ord("1"))) jukebox_fade("loop stem 1", 1/10, 1.0);
-if (keyboard_check_pressed(ord("2"))) jukebox_fade("loop stem 1", 1/10, 0.0);
-if (keyboard_check_pressed(ord("3"))) jukebox_fade("loop stem 2", 1/10, 1.0);
-if (keyboard_check_pressed(ord("4"))) jukebox_fade("loop stem 2", 1/10, 0.0);
-if (keyboard_check_pressed(ord("5"))) jukebox_fade("loop stem 3", 1/10, 1.0);
-if (keyboard_check_pressed(ord("6"))) jukebox_fade("loop stem 3", 1/10, 0.0);
+#endregion
+
+#region Swap example
+
+if (keyboard_check_pressed(ord("E")))
+{
+    if (jukebox_get("queue example", JUKEBOX.FADE_TARGET_GAIN) == 0.0)
+    {
+        jukebox_fade("queue example", 2, 1.0);
+        jukebox_fade("parallel example", 2, 0.0);
+    }
+    else
+    {
+        jukebox_fade("queue example", 2, 0.0);
+        jukebox_fade("parallel example", 2, 1.0);
+    }
+}
+
+#endregion
+
+if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("master", !jukebox_mute_get("master"));
