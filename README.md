@@ -1,4 +1,4 @@
-<h1 align="center">Jukebox 1.1.0</h1>
+<h1 align="center">Jukebox 1.1.1</h1>
 
 ### @jujuadams
 
