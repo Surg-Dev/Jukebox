@@ -1,0 +1,13 @@
+jukebox_init("root", 1.0, 1.0, 10);
+jukebox_common_trim(sndStart  , 0.75);
+jukebox_common_trim(sndLoop1  , 0.75);
+jukebox_common_trim(sndLoop2  , 0.75);
+jukebox_common_trim(sndLoop3  , 0.75);
+jukebox_common_trim(sndEndBad , 0.75);
+jukebox_common_trim(sndEndGood, 0.75);
+
+jukebox_group("bgm", "root", 1.0, 1.0, false);
+jukebox_group("loop", "bgm", 1.0, 1.0, false);
+jukebox_fade("loop", 1/17.5, 1.0);
+
+jukebox_play(sndStart, "loop", "loop start");
