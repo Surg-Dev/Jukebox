@@ -27,7 +27,7 @@ if (ds_map_exists(global.__jukebox_names, _name))
             var _i = 0;
             do
             {
-                var _new_name = _name + " (old " + string(_i) + ")";
+                var _new_name = _name + " (old) (" + string(_i) + ")";
                 _i++;
             }
             until !ds_map_exists(global.__jukebox_names, _new_name);
@@ -54,7 +54,7 @@ if (_name == undefined)
     var _i = 0;
     do
     {
-        _name = audio_get_name(_sound) + " " + string(_i);
+        _name = audio_get_name(_sound) + " (" + string(_i) + ")";
         _i++;
     }
     until !ds_map_exists(global.__jukebox_names, _name);
