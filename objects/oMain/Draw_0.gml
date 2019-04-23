@@ -6,7 +6,9 @@ _string += "3: Queue \"sndLoop3\"  /  Fade in parallel track \"sndLoop3\"\n";
 _string += "F: Queue \"sndEndBad\"\n";
 _string += "G: Queue \"sndEndGood\"\n";
 _string += "E: Swap example\n";
-_string += "M: Mute master\n";
+_string += "M: Mute music\n";
+_string += "S: Play sound effect\n";
+_string += "N: Mute sound effects\n";
 _string += "\n\n\n\n";
 _string += jukebox_debug_string();
 

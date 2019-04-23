@@ -53,7 +53,9 @@ if (ds_map_exists(global.__jukebox_names, _name))
 var _parent_array = global.__jukebox_names[? _parent ];
 if (_priority == undefined) _priority = _parent_array[ JUKEBOX.PRIORITY ];
 
+var _mute     = _parent_array[ JUKEBOX.MUTE     ];
 var _children = _parent_array[ JUKEBOX.CHILDREN ];
+
 var _count = array_length_1d(_children);
 for(var _i = 0; _i < _count; _i++) if (_children[_i] == undefined) break;
 if (_i < _count)
@@ -89,8 +91,8 @@ _node[@ JUKEBOX.FADE_TARGET_GAIN ] = _gain;
 _node[@ JUKEBOX.DESTROY_AT_ZERO  ] = _destroy_at_zero;
 
 _node[@ JUKEBOX.MUTE             ] = false;
-_node[@ JUKEBOX.MUTE_INHERITED   ] = false;
-_node[@ JUKEBOX.MUTE_GAIN        ] = 1;
+_node[@ JUKEBOX.MUTE_INHERITED   ] = _mute? 0.0 : 1.0;
+_node[@ JUKEBOX.MUTE_GAIN        ] = _mute? 0.0 : 1.0;
 
 _node[@ JUKEBOX.NAME             ] = _name;
 _node[@ JUKEBOX.PARENT           ] = _parent;

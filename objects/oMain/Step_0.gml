@@ -53,4 +53,6 @@ if (keyboard_check_pressed(ord("E")))
 
 #endregion
 
-if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("master", !jukebox_mute_get("master"));
+if (keyboard_check_pressed(ord("S"))) jukebox_play(choose(sndSfx1, sndSfx2, sndSfx3, sndSfx4, sndSfx5), "sfx");
+if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("music", !jukebox_mute_get("music"));
+if (keyboard_check_pressed(ord("N"))) jukebox_mute_set("sfx", !jukebox_mute_get("sfx"));
