@@ -2,7 +2,7 @@
 
 var _name = argument0;
 
-show_debug_message("Jukebox: Destroying node \"" + string(_name) + "\"'s children");
+if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Destroying children of node \"" + string(_name) + "\"");
 
 var _node = global.__jukebox_names[? _name ];
 if (_node == undefined) return false;

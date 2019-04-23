@@ -11,10 +11,8 @@ var _parent          = ((argument_count > 1) && (argument[1] != undefined))? arg
 var _name            = ((argument_count > 2)                              )? argument[2] : undefined;
 var _gain            = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : 1.0;
 var _loop            = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : false;
-var _destroy_at_zero = ((argument_count > 5) && (argument[5] != undefined))? argument[5] : JUKEBOX_DEFAULT_DESTROY_AT_ZERO;
+var _destroy_at_zero = ((argument_count > 5) && (argument[5] != undefined))? argument[5] : true;
 var _priority        = ((argument_count > 6)                              )? argument[6] : undefined;
-
-global.__jukebox_last_modified = undefined;
 
 if (ds_map_exists(global.__jukebox_names, _name))
 {
@@ -27,11 +25,10 @@ if (ds_map_exists(global.__jukebox_names, _name))
         
         case 1:
             var _i = 0;
-            var _new_name = _name + " (old " + string(_i) + ")";
             do
             {
+                var _new_name = _name + " (old " + string(_i) + ")";
                 _i++;
-                _new_name = _name + " (old " + string(_i) + ")";
             }
             until !ds_map_exists(global.__jukebox_names, _new_name);
             
@@ -92,7 +89,7 @@ var _resultant_gain = _trim*_gain*_parent_gain;
 
 var _instance = audio_play_sound(_sound, _priority, _loop);
 audio_sound_gain(_instance, _mute? 0 : _resultant_gain, 0);
-show_debug_message("Jukebox: Playing \"" + string(audio_get_name(_sound)) + "\"" + (_loop? " (looped)" : "") + " on node \"" + _name + "\", child of \"" + string(_parent) + "\"");
+if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Playing \"" + string(audio_get_name(_sound)) + "\"" + (_loop? " (looped)" : "") + " on node \"" + _name + "\", child of \"" + string(_parent) + "\"");
 
 
 
@@ -118,10 +115,9 @@ _node[@ JUKEBOX.MUTE_GAIN        ] = _mute? 0.0 : 1.0;
 
 _node[@ JUKEBOX.NAME             ] = _name;
 _node[@ JUKEBOX.PARENT           ] = _parent;
-_node[@ JUKEBOX.TYPE             ] = JUKEBOX_TYPE_AUDIO;
+_node[@ JUKEBOX.TYPE             ] = __JUKEBOX_TYPE_AUDIO;
 _node[@ JUKEBOX.PRIORITY         ] = _priority;
 _node[@ JUKEBOX.CHILDREN         ] = [];
 global.__jukebox_names[? _name ] = _node;
 
-global.__jukebox_last_modified = _name;
 return _name;

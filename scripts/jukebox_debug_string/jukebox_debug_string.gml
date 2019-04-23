@@ -53,7 +53,7 @@ repeat(999)
     }
     
     repeat(ds_list_size(global.__jukebox_stack)) _string += "    ";
-    if (_node[JUKEBOX.TYPE] == JUKEBOX_TYPE_AUDIO)
+    if (_node[JUKEBOX.TYPE] == __JUKEBOX_TYPE_AUDIO)
     {
         _string += "\"" + _name + "\": "
                 +  (_node[ JUKEBOX.MUTE_INHERITED ]? "[M] " : "")

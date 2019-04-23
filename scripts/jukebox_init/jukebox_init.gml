@@ -14,12 +14,45 @@ var _priority = argument3;
 #macro __JUKEBOX_EXPECTED_FRAME_LENGTH  game_get_speed(gamespeed_microseconds)  //In microseconds
 #macro __JUKEBOX_DEFAULT_STEP_SIZE      (delta_time/__JUKEBOX_EXPECTED_FRAME_LENGTH)
 
+#macro __JUKEBOX_NOT_PLAYING  -1
+#macro __JUKEBOX_TYPE_GROUP    0
+#macro __JUKEBOX_TYPE_AUDIO    1
+
+//Constants used for jukebox_get() and jukebox_set()
+enum JUKEBOX
+{
+    TRIM,             // 0
+    GAIN,             // 1
+    GAIN_INHERITED,   // 2
+    
+    AUDIO,            // 3
+    LOOP,             // 4
+    INSTANCE,         // 4
+    TIME_REMAINING,   // 5
+    QUEUED_AUDIO,     // 6
+    QUEUED_LOOP,      // 7
+    
+    FADE_SPEED,       // 8
+    FADE_TARGET_GAIN, // 9
+    DESTROY_AT_ZERO,  //10
+    
+    MUTE,             //11
+    MUTE_INHERITED,   //12
+    MUTE_GAIN,        //13
+    
+    NAME,             //16
+    PARENT,           //17
+    TYPE,             //18
+    PRIORITY,         //19
+    CHILDREN,         //20
+    __INDEX,          //21
+    __SIZE            //22
+}
+
 global.__jukebox_root_name    = _name;
-global.__jukebox_flipflop     = 0;
 global.__jukebox_trim         = ds_map_create();
 global.__jukebox_names        = ds_map_create();
 global.__jukebox_stack        = ds_list_create();
-global.__jukebox_last_modified = undefined;
 
 var _node = array_create(JUKEBOX.__SIZE);
 _node[@ JUKEBOX.NAME             ] = global.__jukebox_root_name;
@@ -38,6 +71,5 @@ _node[@ JUKEBOX.PRIORITY         ] = _priority;
 _node[@ JUKEBOX.FADE_SPEED       ] = 0;
 _node[@ JUKEBOX.FADE_TARGET_GAIN ] = _gain;
 _node[@ JUKEBOX.CHILDREN         ] = [];
-_node[@ JUKEBOX.__FLIPFLOP       ] = 0;
 _node[@ JUKEBOX.DESTROY_AT_ZERO  ] = false;
 global.__jukebox_names[? global.__jukebox_root_name ] = _node;

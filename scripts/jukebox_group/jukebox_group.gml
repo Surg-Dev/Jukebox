@@ -9,10 +9,8 @@ var _name            = ((argument_count > 0)                              )? arg
 var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_root_name;
 var _gain            = ((argument_count > 2) && (argument[2] != undefined))? argument[2] : 1.0;
 var _trim            = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : 1.0;
-var _destroy_at_zero = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : JUKEBOX_DEFAULT_DESTROY_AT_ZERO;
+var _destroy_at_zero = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : true;
 var _priority        = ((argument_count > 5)                              )? argument[5] : undefined;
-
-global.__jukebox_last_modified = undefined;
 
 if (ds_map_exists(global.__jukebox_names, _name))
 {
@@ -82,7 +80,7 @@ else
 
 var _resultant_gain = _trim*_gain*_parent_array[ JUKEBOX.GAIN ];
 
-show_debug_message("Jukebox: Creating group \"" + _name + "\", child of \"" + string(_parent) + "\"");
+if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Creating group \"" + _name + "\", child of \"" + string(_parent) + "\"");
 
 var _node = array_create(JUKEBOX.__SIZE);
 _node[@ JUKEBOX.TRIM             ] = _trim;
@@ -105,10 +103,9 @@ _node[@ JUKEBOX.MUTE_GAIN        ] = 1;
 
 _node[@ JUKEBOX.NAME             ] = _name;
 _node[@ JUKEBOX.PARENT           ] = _parent;
-_node[@ JUKEBOX.TYPE             ] = JUKEBOX_TYPE_GROUP;
+_node[@ JUKEBOX.TYPE             ] = __JUKEBOX_TYPE_GROUP;
 _node[@ JUKEBOX.PRIORITY         ] = _priority;
 _node[@ JUKEBOX.CHILDREN         ] = [];
 global.__jukebox_names[? _name ] = _node;
 
-global.__jukebox_last_modified = _name;
 return _name;

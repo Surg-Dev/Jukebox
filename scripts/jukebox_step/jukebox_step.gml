@@ -2,8 +2,6 @@
 
 var _step_size = ((argument_count > 0) && (argument[0] != undefined))? argument[0] : __JUKEBOX_DEFAULT_STEP_SIZE;
 
-global.__jukebox_flipflop = !global.__jukebox_flipflop;
-
 
 
 var _root_node = global.__jukebox_names[? global.__jukebox_root_name ];
@@ -22,7 +20,6 @@ else if (_fade_speed < 0)
 
 _root_node[@ JUKEBOX.MUTE_INHERITED ] = _root_node[ JUKEBOX.MUTE ];
 _root_node[@ JUKEBOX.__INDEX        ] = 0;
-_root_node[@ JUKEBOX.__FLIPFLOP     ] = global.__jukebox_flipflop;
 _root_node[@ JUKEBOX.GAIN           ] = _gain;
 _root_node[@ JUKEBOX.GAIN_INHERITED ] = _root_node[ JUKEBOX.TRIM ]*_gain;
 
@@ -36,7 +33,7 @@ repeat(999)
     var _parent_node = global.__jukebox_names[? _name ];
     if (_parent_node == undefined)
     {
-        show_debug_message("Jukebox: ERROR! Node \"" + _name + "\" was queued but does not exist");
+        show_debug_message("Jukebox: WARNING! Node \"" + _name + "\" was queued but does not exist");
         _name = _parent_name;
         break;
     }
@@ -71,8 +68,7 @@ repeat(999)
         continue;
     }
     
-    _node[@ JUKEBOX.__FLIPFLOP ] = global.__jukebox_flipflop;
-    _node[@ JUKEBOX.__INDEX    ] = 0;
+    _node[@ JUKEBOX.__INDEX ] = 0;
     
     var _mute = _parent_mute || _node[ JUKEBOX.MUTE ];
     _node[@ JUKEBOX.MUTE_INHERITED ] = _mute;
@@ -119,7 +115,7 @@ repeat(999)
     
     if ((_resultant_gain <= 0) && _node[ JUKEBOX.DESTROY_AT_ZERO ])
     {
-        show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a resultant gain of zero");
+        if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a resultant gain of zero");
         jukebox_destroy(_name);
         _name = _parent_name;
         continue;
@@ -127,7 +123,7 @@ repeat(999)
     
     
     
-    if (_node[ JUKEBOX.TYPE ] == JUKEBOX_TYPE_AUDIO)
+    if (_node[ JUKEBOX.TYPE ] == __JUKEBOX_TYPE_AUDIO)
     {
         audio_sound_gain(_instance, clamp(_mute_gain*_resultant_gain, 0, JUKEBOX_MAX_GAIN), JUKEBOX_FRAME_LEAD*__JUKEBOX_EXPECTED_FRAME_LENGTH/1000);
         
@@ -161,7 +157,7 @@ repeat(999)
             {
                 if ((_next_audio != _audio) || !_loop)
                 {
-                    show_debug_message("Jukebox: Starting new instance of \"" + string(audio_get_name(_next_audio)) + "\" for node \"" + string(_name) + "\"");
+                    if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Starting new instance of \"" + string(audio_get_name(_next_audio)) + "\" for node \"" + string(_name) + "\"");
                     
                     audio_stop_sound(_instance); //Positive destroy the old instance
                     _instance = audio_play_sound(_next_audio, _node[ JUKEBOX.PRIORITY ], _next_loop);
@@ -179,8 +175,9 @@ repeat(999)
         {
             if (!_is_playing)
             {
-                show_debug_message("Jukebox: Node \"" + string(_name) + "\" has ended");
+                if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has ended");
                 jukebox_destroy(_name);
+                _name = _parent_name;
             }
         }
     }
@@ -193,12 +190,40 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
     var _key = ds_map_find_first(global.__jukebox_names);
     while(_key != undefined)
     {
-        _node = global.__jukebox_names[? _key ];
-        if (_node[ JUKEBOX.__FLIPFLOP ] != global.__jukebox_flipflop)
+        var _node = global.__jukebox_names[? _key ];
+        
+        var _parent = _node[ JUKEBOX.PARENT ];
+        if (_parent == undefined)
         {
-            show_debug_message("Jukebox: Cleaning up node \"" + _key + "\" as it has been orphaned");
+            if (_key != global.__jukebox_root_name)
+            {
+                if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as it has an undefined parent");
+                jukebox_destroy(_key);
+            }
+            
+            _key = ds_map_find_next(global.__jukebox_names, _key);
+            continue;
+        }
+        
+        var _parent_node = global.__jukebox_names[? _parent ];
+        if (_parent_node == undefined)
+        {
+            if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as its parent \"" + string(_parent) + "\" does not exist");
+            jukebox_destroy(_key);
+            
+            _key = ds_map_find_next(global.__jukebox_names, _key);
+            continue;
+        }
+        
+        var _children = _parent_node[ JUKEBOX.CHILDREN ];
+        var _size = array_length_1d(_children);
+        for(var _i = 0; _i < _size; _i++) if (_children[ _i ] == _key) break;
+        if (_i >= _size)
+        {
+            if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as its parent \"" + string(_parent) + "\" does have it as a child");
             jukebox_destroy(_key);
         }
+        
         _key = ds_map_find_next(global.__jukebox_names, _key);
     }
 }

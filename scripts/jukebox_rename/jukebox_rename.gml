@@ -4,8 +4,6 @@
 var _old_name = argument[0];
 var _new_name = (argument_count > 1)? argument[1] : undefined;
 
-global.__jukebox_last_modified = undefined;
-
 var _node = global.__jukebox_names[? _old_name ];
 if (_node == undefined)
 {
@@ -25,7 +23,7 @@ if (_new_name == undefined)
     until !ds_map_exists(global.__jukebox_names, _new_name);
 }
 
-show_debug_message("Jukebox: Renaming node \"" + string(_old_name) + "\" to \"" + string(_new_name) + "\"");
+if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Renaming node \"" + string(_old_name) + "\" to \"" + string(_new_name) + "\"");
 
 
 
@@ -90,5 +88,4 @@ if (_parent_node != undefined)
 global.__jukebox_names[? _new_name ] = _node;
 ds_map_delete(global.__jukebox_names, _old_name);
 
-global.__jukebox_last_modified = _new_name;
 return _new_name;

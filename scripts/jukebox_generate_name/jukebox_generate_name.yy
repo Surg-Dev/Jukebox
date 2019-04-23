@@ -1,8 +1,8 @@
 {
-    "id": "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
+    "id": "039ca7ff-5057-4b6c-9aa8-0a981e16af26",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "jukebox_common_trim",
+    "name": "jukebox_generate_name",
     "IsCompatibility": false,
     "IsDnD": false
 }

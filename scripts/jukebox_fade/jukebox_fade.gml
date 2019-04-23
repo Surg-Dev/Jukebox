@@ -8,14 +8,6 @@ var _speed           = argument[1];
 var _target_gain     = (_speed != 0)? argument[2] : undefined;
 var _destroy_at_zero = (argument_count > 3)? argument[3] : undefined;
 
-if (_name == undefined)
-{
-    _name = global.__jukebox_last_modified;
-    show_debug_message("Jukebox: Name was <undefined>, using last created Jukebox node \"" + string(global.__jukebox_last_modified) + "\"");
-}
-
-global.__jukebox_last_modified = undefined;
-
 var _node = global.__jukebox_names[? _name ];
 if (_node == undefined) return false;
 
@@ -49,5 +41,4 @@ _node[@ JUKEBOX.FADE_SPEED       ] = _speed;
 _node[@ JUKEBOX.FADE_TARGET_GAIN ] = _target_gain;
 if (_destroy_at_zero != undefined) _node[@ JUKEBOX.DESTROY_AT_ZERO ] = _destroy_at_zero;
 
-global.__jukebox_last_modified = _name;
 return _name;
