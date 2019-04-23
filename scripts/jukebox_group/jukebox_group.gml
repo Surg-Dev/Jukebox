@@ -6,7 +6,7 @@
 /// @param [priority]
 
 var _name            = argument[0];
-var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_root_name;
+var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_master_name;
 var _gain            = ((argument_count > 2) && (argument[2] != undefined))? argument[2] : 1.0;
 var _destroy_at_zero = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : true;
 var _trim            = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : 1.0;

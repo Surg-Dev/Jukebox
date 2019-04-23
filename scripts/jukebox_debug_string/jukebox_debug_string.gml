@@ -2,7 +2,7 @@ ds_list_clear(global.__jukebox_stack);
 
 var _string = "";
 
-var _name = global.__jukebox_root_name;
+var _name = global.__jukebox_master_name;
 var _node = global.__jukebox_names[? _name ];
 
 repeat(ds_list_size(global.__jukebox_stack)) _string += "    ";

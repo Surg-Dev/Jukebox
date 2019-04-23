@@ -7,7 +7,7 @@
 /// @param [priority]
 
 var _sound           = argument[0];
-var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_root_name;
+var _parent          = ((argument_count > 1) && (argument[1] != undefined))? argument[1] : global.__jukebox_master_name;
 var _name            = ((argument_count > 2)                              )? argument[2] : undefined;
 var _gain            = ((argument_count > 3) && (argument[3] != undefined))? argument[3] : 1.0;
 var _loop            = ((argument_count > 4) && (argument[4] != undefined))? argument[4] : false;

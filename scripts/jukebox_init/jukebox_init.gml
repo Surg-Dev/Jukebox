@@ -1,7 +1,7 @@
-/// @param rootName
-/// @param rootGain
-/// @param rootTrim
-/// @param rootPriority
+/// @param masterName
+/// @param masterGain
+/// @param masterTrim
+/// @param masterPriority
 
 var _name     = argument0;
 var _gain     = argument1;
@@ -51,13 +51,13 @@ enum JUKEBOX
     __SIZE            //22
 }
 
-global.__jukebox_root_name    = _name;
+global.__jukebox_master_name    = _name;
 global.__jukebox_trim         = ds_map_create();
 global.__jukebox_names        = ds_map_create();
 global.__jukebox_stack        = ds_list_create();
 
 var _node = array_create(JUKEBOX.__SIZE);
-_node[@ JUKEBOX.NAME             ] = global.__jukebox_root_name;
+_node[@ JUKEBOX.NAME             ] = global.__jukebox_master_name;
 _node[@ JUKEBOX.PRIORITY         ] = 10;
 _node[@ JUKEBOX.TRIM             ] = _trim;
 _node[@ JUKEBOX.GAIN             ] = _gain;
@@ -74,4 +74,4 @@ _node[@ JUKEBOX.FADE_SPEED       ] = 0;
 _node[@ JUKEBOX.FADE_TARGET_GAIN ] = _gain;
 _node[@ JUKEBOX.CHILDREN         ] = [];
 _node[@ JUKEBOX.DESTROY_AT_ZERO  ] = false;
-global.__jukebox_names[? global.__jukebox_root_name ] = _node;
+global.__jukebox_names[? global.__jukebox_master_name ] = _node;

@@ -5,10 +5,10 @@ var _step_size = ((argument_count > 0) && (argument[0] != undefined))? argument[
 var _per_second_factor = game_get_speed(gamespeed_microseconds)/1000000;
 
 
-var _root_node = global.__jukebox_names[? global.__jukebox_root_name ];
-var _gain        = _root_node[ JUKEBOX.GAIN             ];
-var _fade_speed  = _root_node[ JUKEBOX.FADE_SPEED       ];
-var _fade_target = _root_node[ JUKEBOX.FADE_TARGET_GAIN ];
+var _master_node = global.__jukebox_names[? global.__jukebox_master_name ];
+var _gain        = _master_node[ JUKEBOX.GAIN             ];
+var _fade_speed  = _master_node[ JUKEBOX.FADE_SPEED       ];
+var _fade_target = _master_node[ JUKEBOX.FADE_TARGET_GAIN ];
 
 if (_fade_speed > 0)
 {
@@ -19,14 +19,14 @@ else if (_fade_speed < 0)
     _gain = max(_fade_target, _gain + _fade_speed*_step_size);
 }
 
-_root_node[@ JUKEBOX.MUTE_INHERITED ] = _root_node[ JUKEBOX.MUTE ];
-_root_node[@ JUKEBOX.__INDEX        ] = 0;
-_root_node[@ JUKEBOX.GAIN           ] = _gain;
-_root_node[@ JUKEBOX.GAIN_INHERITED ] = _root_node[ JUKEBOX.TRIM ]*_gain;
+_master_node[@ JUKEBOX.MUTE_INHERITED ] = _master_node[ JUKEBOX.MUTE ];
+_master_node[@ JUKEBOX.__INDEX        ] = 0;
+_master_node[@ JUKEBOX.GAIN           ] = _gain;
+_master_node[@ JUKEBOX.GAIN_INHERITED ] = _master_node[ JUKEBOX.TRIM ]*_gain;
 
 
 
-var _name = global.__jukebox_root_name;
+var _name = global.__jukebox_master_name;
 repeat(999)
 {
     if (_name == undefined) break;
@@ -212,7 +212,7 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
         var _parent = _node[ JUKEBOX.PARENT ];
         if (_parent == undefined)
         {
-            if (_key != global.__jukebox_root_name)
+            if (_key != global.__jukebox_master_name)
             {
                 if (JUKEBOX_DEBUG) show_debug_message("Jukebox: \"" + string(_key) + "\" destroyed as it has an undefined parent");
                 jukebox_stop(_key);
