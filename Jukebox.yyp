@@ -87,6 +87,22 @@
             }
         },
         {
+            "Key": "1645ab6e-f5bf-469b-b1a2-d389e4ac1dd0",
+            "Value": {
+                "id": "e526f522-0527-4940-a62a-e0de84b20168",
+                "resourcePath": "views\\1645ab6e-f5bf-469b-b1a2-d389e4ac1dd0.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "1830cd61-c1b7-43da-8b31-c309af2e4180",
+            "Value": {
+                "id": "9eb5eefb-0486-4356-ba7a-ec8842c38039",
+                "resourcePath": "scripts\\jukebox_get\\jukebox_get.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
             "Value": {
                 "id": "016f0069-db65-46c9-b682-cc4e5be90c58",
@@ -155,6 +171,14 @@
             "Value": {
                 "id": "ccabb2d8-876c-44c1-a36f-2215596fb561",
                 "resourcePath": "scripts\\jukebox_exists\\jukebox_exists.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "52fb46d1-043d-4471-b565-f6c910be3fc0",
+            "Value": {
+                "id": "7c3a36d3-a8bc-4182-b172-01f7485f153e",
+                "resourcePath": "scripts\\jukebox_mute_set\\jukebox_mute_set.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -303,6 +327,14 @@
             }
         },
         {
+            "Key": "ac049137-970b-4436-84d6-87e7e97429a3",
+            "Value": {
+                "id": "c7e4edbb-0d80-4365-b2ba-f5fccd52ca4a",
+                "resourcePath": "views\\ac049137-970b-4436-84d6-87e7e97429a3.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "ac32dd56-589e-417c-9ac9-d318ea326126",
             "Value": {
                 "id": "595dcb80-701f-4b2c-b645-c85b8dd02188",
@@ -399,6 +431,14 @@
             }
         },
         {
+            "Key": "e38e8810-8c68-4924-8489-47762cd55179",
+            "Value": {
+                "id": "f3205693-b096-45f0-b8ba-ecdfce878a63",
+                "resourcePath": "scripts\\jukebox_mute_get\\jukebox_mute_get.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e42bf5cc-3f46-4d67-a6d0-a4885a11ac3f",
             "Value": {
                 "id": "6fbbbd46-68d0-4638-97ac-1890d853e26c",
@@ -434,19 +474,22 @@
     "script_order": [
         "c6f18934-892a-456a-b120-a1ec34efb780",
         "071703b5-73fd-48eb-85a5-5f53797bf9e3",
-        "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
+        "ac32dd56-589e-417c-9ac9-d318ea326126",
         "25a5f155-de69-453f-b495-6e230e28fc1c",
         "bbd644dc-beff-4352-8d16-07b70af6ed01",
-        "7df9c31d-1ba9-4dd7-8c79-9c826851a5eb",
-        "c0751370-035d-4071-b27d-5fbadeb030e2",
         "a2466029-777d-4729-819f-1aff1b933d57",
-        "ac32dd56-589e-417c-9ac9-d318ea326126",
-        "4bba4404-661d-413f-8005-2f91c1af0eba",
         "617acf85-9de9-4f81-a876-c2e612981b99",
         "c6cfc943-ed0c-4f0a-8fbd-d3524354cb5c",
+        "52fb46d1-043d-4471-b565-f6c910be3fc0",
+        "e38e8810-8c68-4924-8489-47762cd55179",
+        "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
         "08c4f8fd-82a0-43db-ac79-b2b2edbe552c",
+        "7df9c31d-1ba9-4dd7-8c79-9c826851a5eb",
+        "c0751370-035d-4071-b27d-5fbadeb030e2",
+        "4bba4404-661d-413f-8005-2f91c1af0eba",
         "d3309ad4-fafc-4623-8b72-fc7e9f22db63",
-        "039ca7ff-5057-4b6c-9aa8-0a981e16af26"
+        "039ca7ff-5057-4b6c-9aa8-0a981e16af26",
+        "1830cd61-c1b7-43da-8b31-c309af2e4180"
     ],
     "tutorial": ""
 }

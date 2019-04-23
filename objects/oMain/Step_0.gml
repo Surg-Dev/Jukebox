@@ -7,7 +7,7 @@ if (jukebox_will_finish("loop") && !jukebox_exists("loop stem 1"))
     jukebox_play(sndLoop3, "loop group", "loop stem 3", 0.0, true, false);
 }
 
-if (keyboard_check_pressed(ord("M"))) jukebox_set("loop", JUKEBOX.MUTE, !jukebox_get("loop", JUKEBOX.MUTE));
+if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("loop", !jukebox_mute_get("loop"));
 if (keyboard_check_pressed(ord("F"))) jukebox_queue("loop", sndEndBad, false);
 if (keyboard_check_pressed(ord("G"))) jukebox_queue("loop", sndEndGood, false);
 
