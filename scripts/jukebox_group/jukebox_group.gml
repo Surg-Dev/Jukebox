@@ -83,9 +83,11 @@ var _resultant_gain = _trim*_gain*_parent_array[ JUKEBOX.GAIN ];
 if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Creating group \"" + _name + "\", child of \"" + string(_parent) + "\"");
 
 var _node = array_create(JUKEBOX.__SIZE);
-_node[@ JUKEBOX.TRIM             ] = _trim;
 _node[@ JUKEBOX.GAIN             ] = _gain;
 _node[@ JUKEBOX.GAIN_INHERITED   ] = _resultant_gain;
+
+_node[@ JUKEBOX.TRIM             ] = _trim;
+_node[@ JUKEBOX.TRIM_TARGET      ] = _trim;
 
 _node[@ JUKEBOX.AUDIO            ] = -1;
 _node[@ JUKEBOX.INSTANCE         ] = -1;

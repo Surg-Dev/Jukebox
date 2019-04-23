@@ -18,12 +18,14 @@ var _priority = argument3;
 #macro __JUKEBOX_TYPE_GROUP    0
 #macro __JUKEBOX_TYPE_AUDIO    1
 
-//Constants used for jukebox_get() and jukebox_set()
+//Constants used for jukebox_get()
 enum JUKEBOX
 {
-    TRIM,             // 0
     GAIN,             // 1
     GAIN_INHERITED,   // 2
+    
+    TRIM,             // 1
+    TRIM_TARGET,      // 2
     
     AUDIO,            // 3
     LOOP,             // 4

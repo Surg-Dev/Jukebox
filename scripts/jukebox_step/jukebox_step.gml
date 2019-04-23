@@ -2,6 +2,7 @@
 
 var _step_size = ((argument_count > 0) && (argument[0] != undefined))? argument[0] : __JUKEBOX_DEFAULT_STEP_SIZE;
 
+var _per_second_factor = game_get_speed(gamespeed_microseconds)/1000000;
 
 
 var _root_node = global.__jukebox_names[? global.__jukebox_root_name ];
@@ -70,23 +71,9 @@ repeat(999)
     
     _node[@ JUKEBOX.__INDEX ] = 0;
     
-    var _mute = _parent_mute || _node[ JUKEBOX.MUTE ];
-    _node[@ JUKEBOX.MUTE_INHERITED ] = _mute;
-    
-    var _mute_gain = _node[ JUKEBOX.MUTE_GAIN ];
-    if (_mute)
-    {
-        _mute_gain = max(0, _mute_gain - JUKEBOX_MUTE_SPEED*(game_get_speed(gamespeed_microseconds)/1000000));
-    }
-    else
-    {
-        _mute_gain = min(1, _mute_gain + JUKEBOX_MUTE_SPEED*(game_get_speed(gamespeed_microseconds)/1000000));
-    }
-    _node[@ JUKEBOX.MUTE_GAIN ] = _mute_gain;
     
     
     
-    var _trim        = _node[ JUKEBOX.TRIM             ];
     var _gain        = _node[ JUKEBOX.GAIN             ];
     var _fade_speed  = _node[ JUKEBOX.FADE_SPEED       ];
     var _fade_target = _node[ JUKEBOX.FADE_TARGET_GAIN ];
@@ -95,7 +82,32 @@ repeat(999)
     var _instance    = _node[ JUKEBOX.INSTANCE         ];
     var _next_audio  = _node[ JUKEBOX.QUEUED_AUDIO     ];
     var _next_loop   = _node[ JUKEBOX.QUEUED_LOOP      ];
+    var _trim        = _node[ JUKEBOX.TRIM             ];
+    var _trim_target = _node[ JUKEBOX.TRIM_TARGET      ];
+    var _mute        = _node[ JUKEBOX.MUTE             ] || _parent_mute;
     
+    //Handle mute gain
+    _node[@ JUKEBOX.MUTE_INHERITED ] = _mute;
+    var _mute_gain = _node[ JUKEBOX.MUTE_GAIN ];
+    if (_mute)
+    {
+        _mute_gain = max(0, _mute_gain - _step_size*JUKEBOX_MUTE_SPEED*_per_second_factor);
+    }
+    else
+    {
+        _mute_gain = min(1, _mute_gain + _step_size*JUKEBOX_MUTE_SPEED*_per_second_factor);
+    }
+    _node[@ JUKEBOX.MUTE_GAIN ] = _mute_gain;
+    
+    //Change trim value
+    if (_trim != _trim_target)
+    {
+        var _diff = clamp(_trim_target - _trim, -_per_second_factor*JUKEBOX_TRIM_SPEED, _per_second_factor*JUKEBOX_TRIM_SPEED);
+        _trim = clamp(_trim + _step_size*_diff, 0, 1);
+        _node[@ JUKEBOX.TRIM ] = _trim;
+    }
+    
+    //Perform fade
     if (_fade_speed > 0)
     {
         _gain = min(_fade_target, _gain + _fade_speed*_step_size);
@@ -105,17 +117,17 @@ repeat(999)
         _gain = max(_fade_target, _gain + _fade_speed*_step_size);
     }
     
+    //If we're at our fade target, set the fade speed to 0
     if (_gain == _fade_target) _node[@ JUKEBOX.FADE_SPEED ] = 0;
     
+    //Calculate the final gain
     var _resultant_gain = _trim*_gain*_parent_gain;
     _node[@ JUKEBOX.GAIN           ] = _gain;
     _node[@ JUKEBOX.GAIN_INHERITED ] = _resultant_gain;
     
-    
-    
     if ((_resultant_gain <= 0) && _node[ JUKEBOX.DESTROY_AT_ZERO ])
     {
-        if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a resultant gain of zero");
+        if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Node \"" + string(_name) + "\" has reached a final gain of zero");
         jukebox_destroy(_name);
         _name = _parent_name;
         continue;
@@ -185,6 +197,8 @@ repeat(999)
 
 
 
+#region Clean up orphans
+
 if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
 {
     var _key = ds_map_find_first(global.__jukebox_names);
@@ -227,3 +241,5 @@ if (JUKEBOX_DEBUG_CLEAN_UP_ORPHANS)
         _key = ds_map_find_next(global.__jukebox_names, _key);
     }
 }
+
+#endregion

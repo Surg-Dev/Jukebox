@@ -8,7 +8,7 @@ var _node = global.__jukebox_names[? _name ];
 if (_node == undefined) return false;
 
 //Stops this sound's audio
-var _instance   = _node[ JUKEBOX.INSTANCE   ];
+var _instance = _node[ JUKEBOX.INSTANCE ];
 if (_instance != undefined) audio_stop_sound(_instance);
 
 jukebox_destroy_children(_name);

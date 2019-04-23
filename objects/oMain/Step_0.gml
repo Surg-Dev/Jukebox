@@ -11,6 +11,9 @@ if (keyboard_check_pressed(ord("M"))) jukebox_mute_set("loop", !jukebox_mute_get
 if (keyboard_check_pressed(ord("F"))) jukebox_queue("loop", sndEndBad, false);
 if (keyboard_check_pressed(ord("G"))) jukebox_queue("loop", sndEndGood, false);
 
+if (keyboard_check_pressed(ord("T"))) jukebox_set_trim("loop", 0.25);
+if (keyboard_check_pressed(ord("Y"))) jukebox_set_trim("loop", 0.75);
+
 if (keyboard_check_pressed(ord("1"))) jukebox_fade("loop stem 1", 1/10, 1.0);
 if (keyboard_check_pressed(ord("2"))) jukebox_fade("loop stem 1", 1/10, 0.0);
 if (keyboard_check_pressed(ord("3"))) jukebox_fade("loop stem 2", 1/10, 1.0);

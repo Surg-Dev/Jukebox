@@ -106,7 +106,7 @@
             "Key": "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
             "Value": {
                 "id": "016f0069-db65-46c9-b682-cc4e5be90c58",
-                "resourcePath": "scripts\\jukebox_global_trim\\jukebox_global_trim.yy",
+                "resourcePath": "scripts\\jukebox_set_global_trim\\jukebox_set_global_trim.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -415,6 +415,14 @@
             }
         },
         {
+            "Key": "d1633306-80dc-47e1-ab00-30618e5062e8",
+            "Value": {
+                "id": "da38a8b7-c042-4b94-8c95-146848151cbf",
+                "resourcePath": "scripts\\jukebox_set_trim\\jukebox_set_trim.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d3309ad4-fafc-4623-8b72-fc7e9f22db63",
             "Value": {
                 "id": "8f966f14-416a-409a-8ffe-a9984c6c7726",
@@ -483,6 +491,7 @@
         "52fb46d1-043d-4471-b565-f6c910be3fc0",
         "e38e8810-8c68-4924-8489-47762cd55179",
         "18b534a0-93bd-4cbb-a8e1-c0ca3f40ff92",
+        "d1633306-80dc-47e1-ab00-30618e5062e8",
         "08c4f8fd-82a0-43db-ac79-b2b2edbe552c",
         "7df9c31d-1ba9-4dd7-8c79-9c826851a5eb",
         "c0751370-035d-4071-b27d-5fbadeb030e2",

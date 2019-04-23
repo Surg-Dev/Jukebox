@@ -16,7 +16,7 @@ var _priority        = ((argument_count > 6)                              )? arg
 
 if (ds_map_exists(global.__jukebox_names, _name))
 {
-    switch(JUKEBOX_CREATE_OVERWRITE_BEHAVIOUR)
+    switch(JUKEBOX_PLAY_OVERWRITE_BEHAVIOUR)
     {
         case 0:
             show_debug_message("Jukebox: WARNING! Node name \"" + _name + "\" already exists. Destroying old node");
@@ -94,9 +94,11 @@ if (JUKEBOX_DEBUG) show_debug_message("Jukebox: Playing \"" + string(audio_get_n
 
 
 var _node = array_create(JUKEBOX.__SIZE);
-_node[@ JUKEBOX.TRIM             ] = _trim;
 _node[@ JUKEBOX.GAIN             ] = _gain;
 _node[@ JUKEBOX.GAIN_INHERITED   ] = _resultant_gain;
+
+_node[@ JUKEBOX.TRIM             ] = _trim;
+_node[@ JUKEBOX.TRIM_TARGET      ] = _trim;
 
 _node[@ JUKEBOX.AUDIO            ] = _sound;
 _node[@ JUKEBOX.LOOP             ] = _loop;
