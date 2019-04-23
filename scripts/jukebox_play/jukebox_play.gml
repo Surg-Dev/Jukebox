@@ -111,7 +111,7 @@ _node[@ JUKEBOX.FADE_SPEED       ] = 0;
 _node[@ JUKEBOX.FADE_TARGET_GAIN ] = _gain;
 _node[@ JUKEBOX.DESTROY_AT_ZERO  ] = _destroy_at_zero
 
-_node[@ JUKEBOX.MUTE             ] = _mute;
+_node[@ JUKEBOX.MUTE             ] = false;
 _node[@ JUKEBOX.MUTE_INHERITED   ] = _mute? 0.0 : 1.0;
 _node[@ JUKEBOX.MUTE_GAIN        ] = _mute? 0.0 : 1.0;
 
